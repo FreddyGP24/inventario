@@ -97,13 +97,13 @@ $estado = $_GET['estado'] ?? '';
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        content="width=device-width, initial-scale=1.0">
 
     <title>INVENTARIO</title>
 
@@ -158,10 +158,12 @@ $estado = $_GET['estado'] ?? '';
                         type="text"
                         id="nombre"
                         name="nombre"
-                        maxlength="100"
+                        maxlength="50"
+                        minlength="3"
+                        pattern="^(?:[^A-Za-záéíóúÁÉÍÓÚñÑ]*[A-Za-záéíóúÁÉÍÓÚñÑ]){3,}.*$"
+                        title="Mínimo 3 letras, los símbolos no cuentan"
                         placeholder="Ejemplo: Café"
-                        required
-                    >
+                        required>
                 </div>
 
                 <div class="campo">
@@ -174,8 +176,7 @@ $estado = $_GET['estado'] ?? '';
                         id="cantidad"
                         name="cantidad"
                         placeholder="Ejemplo: 10"
-                        required
-                    >
+                        required>
                 </div>
 
                 <button type="submit">
@@ -345,4 +346,5 @@ $estado = $_GET['estado'] ?? '';
         U1. Planeación del proceso de desarrollo de software
     </footer>
 </body>
+
 </html>
