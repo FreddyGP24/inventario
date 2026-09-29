@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/config/conexion.php';
+require_once __DIR__ . '/conexion.php';
 
 // Mostrar como máximo 7 productos por página.
 $productosPorPagina = 7;
@@ -143,8 +143,8 @@ $estado = $_GET['estado'] ?? '';
             <?php endif; ?>
 
             <?php if ($estado === 'cantidad_invalida'): ?>
-                <div class="mensaje error" role="alert">
-                    La cantidad debe ser un número.
+                <div class="mensaje error">
+                    La cantidad debe ser un número válido entre 0 y 999.
                 </div>
             <?php endif; ?>
 
@@ -175,6 +175,9 @@ $estado = $_GET['estado'] ?? '';
                         type="number"
                         id="cantidad"
                         name="cantidad"
+                        min="0"
+                        max="999"
+                        step="1"
                         placeholder="Ejemplo: 10"
                         required>
                 </div>
@@ -243,13 +246,24 @@ $estado = $_GET['estado'] ?? '';
                                 </td>
 
                                 <td>
-                                    <?php if ($producto['cantidad'] > 0): ?>
-                                        <span class="estado disponible">
-                                            Disponible
-                                        </span>
-                                    <?php else: ?>
+                                    <?php if ($producto['cantidad'] == 0): ?>
                                         <span class="estado agotado">
                                             Sin existencia
+                                        </span>
+
+                                    <?php elseif ($producto['cantidad'] <= 5): ?>
+                                        <span class="estado poco">
+                                            Muy poco
+                                        </span>
+
+                                    <?php elseif ($producto['cantidad'] <= 15): ?>
+                                        <span class="estado moderado">
+                                            Moderado
+                                        </span>
+
+                                    <?php else: ?>
+                                        <span class="estado disponible">
+                                            Disponible
                                         </span>
                                     <?php endif; ?>
                                 </td>

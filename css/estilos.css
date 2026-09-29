@@ -344,3 +344,30 @@ footer {
         font-size: 13px;
     }
 }
+
+
+
+
+/* Estado de inventario: cantidad baja */
+.estado.poco {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Estado de inventario: cantidad moderada */
+.estado.moderado {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+/* Estado de inventario: cantidad suficiente */
+.estado.disponible {
+    background-color: #198754;
+    color: white;
+}
+
+/* Estado de inventario: sin existencia */
+.estado.agotado {
+    background-color: #6c757d;
+    color: white;
+}
