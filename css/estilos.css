@@ -371,3 +371,55 @@ footer {
     background-color: #6c757d;
     color: white;
 }
+
+/* Controles de Cantidad en la Tabla */
+.control-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-cantidad {
+    margin: 0;
+    display: inline-block;
+}
+
+.numero-cantidad {
+    min-width: 28px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.btn-cantidad {
+    background: var(--azul-claro);
+    color: var(--azul-principal);
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 10px;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.btn-cantidad:hover:not(:disabled) {
+    background: var(--azul-principal);
+    color: var(--blanco);
+    border-color: var(--azul-principal);
+}
+
+.btn-cantidad:focus-visible {
+    outline: 2px solid var(--azul-principal);
+    outline-offset: 2px;
+}
+
+.btn-cantidad:disabled {
+    background: var(--gris-fondo);
+    color: #aebed0;
+    cursor: not-allowed;
+    border-color: var(--borde);
+}
