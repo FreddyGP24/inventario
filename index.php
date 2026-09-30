@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/conexion.php';
+require_once __DIR__ . '/config/conexion.php';
 
 // Mostrar como máximo 7 productos por página.
 $productosPorPagina = 7;
@@ -236,13 +236,37 @@ $estado = $_GET['estado'] ?? '';
                                 </td>
 
                                 <td>
-                                    <?php
-                                    echo htmlspecialchars(
-                                        (string) $producto['cantidad'],
-                                        ENT_QUOTES | ENT_SUBSTITUTE,
-                                        'UTF-8'
-                                    );
-                                    ?>
+                                    <div class="control-cantidad">
+                                        <!-- Botón de Restar -->
+                                        <form action="actualizar.php" method="POST" class="form-cantidad">
+                                            <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
+                                            <input type="hidden" name="accion" value="restar">
+                                            <input type="hidden" name="pagina" value="<?php echo $paginaActual; ?>">
+                                            <button type="submit" class="btn-cantidad" aria-label="Restar 1" <?php echo $producto['cantidad'] <= 0 ? 'disabled' : ''; ?>>
+                                                ▼
+                                            </button>
+                                        </form>
+
+                                        <span class="numero-cantidad">
+                                            <?php
+                                            echo htmlspecialchars(
+                                                (string) $producto['cantidad'],
+                                                ENT_QUOTES | ENT_SUBSTITUTE,
+                                                'UTF-8'
+                                            );
+                                            ?>
+                                        </span>
+
+                                        <!-- Botón de Sumar -->
+                                        <form action="actualizar.php" method="POST" class="form-cantidad">
+                                            <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
+                                            <input type="hidden" name="accion" value="sumar">
+                                            <input type="hidden" name="pagina" value="<?php echo $paginaActual; ?>">
+                                            <button type="submit" class="btn-cantidad" aria-label="Sumar 1" <?php echo $producto['cantidad'] >= 999 ? 'disabled' : ''; ?>>
+                                                ▲
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
 
                                 <td>
