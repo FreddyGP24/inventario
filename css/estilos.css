@@ -31,9 +31,9 @@ body {
     padding: 36px 20px;
     background: linear-gradient(
         135deg,
-        var(--azul-oscuro),
-        var(--azul-principal),
-        var(--turquesa)
+        #1e1b4b,
+        #312e81,
+        #4338ca
     );
     color: var(--blanco);
 }
