@@ -386,3 +386,20 @@ $estado = $_GET['estado'] ?? '';
 </body>
 
 </html>
+
+
+<?php if ($estado === 'nombre_invalido'): ?>
+    <div class="mensaje error" role="alert">
+        El nombre debe contener al menos 3 letras
+        y no superar los 50 caracteres.
+    </div>
+<?php endif; ?>
+
+
+
+<?php if ($estado === 'cantidad_invalida'): ?>
+    <div class="mensaje error" role="alert">
+        La cantidad debe ser un número entero
+        mayor que 0 y máximo 999.
+    </div>
+<?php endif; ?>
