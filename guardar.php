@@ -2,36 +2,26 @@
 <?php
 
 require_once __DIR__ . '/config/conexion.php';
+require_once __DIR__ . '/src/Validaciones.php';
 
-// Función para validar el nombre del producto
-function validarNombre($nombre) {
-    $nombre = trim($nombre);
-
-    // Contar solamente letras, incluyendo acentos y ñ
-    preg_match_all('/\p{L}/u', $nombre, $coincidencias);
-
-    return count($coincidencias[0]) >= 3
-        && mb_strlen($nombre, 'UTF-8') <= 50;
-}
-
-// Función para validar la cantidad
-function validarCantidad($cantidad) {
-    $numero = filter_var($cantidad, FILTER_VALIDATE_INT);
-
-    return $numero !== false
-        && $numero > 0
-        && $numero <= 999;
-}
-
-// Verificar que la solicitud sea POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
     exit;
 }
 
-// Obtener los datos
-$nombre = trim($_POST['nombre'] ?? '');
+//Obtener los datos del formulario
+$nombre = $_POST['nombre'] ?? '';
 $cantidad = $_POST['cantidad'] ?? '';
+
+// Comprobar que los datos tengan el tipo esperado
+if (!is_string($nombre) || !is_string($cantidad)) {
+    header('Location: index.php?estado=incompleto');
+    exit;
+}
+
+// Eliminar espacios innecesarios
+$nombre = trim($nombre);
+$cantidad = trim($cantidad);
 
 // Verificar campos vacíos
 if ($nombre === '' || $cantidad === '') {
@@ -39,19 +29,19 @@ if ($nombre === '' || $cantidad === '') {
     exit;
 }
 
-// Validar nombre mediante función
-if (!validarNombre($nombre)) {
+// Validar el nombre del producto
+if (!validarNombreProducto($nombre)) {
     header('Location: index.php?estado=nombre_invalido');
     exit;
 }
 
-// Validar cantidad mediante función
-if (!validarCantidad($cantidad)) {
+// Validar la cantidad
+if (!validarCantidadProducto($cantidad)) {
     header('Location: index.php?estado=cantidad_invalida');
     exit;
 }
 
-// Guardar únicamente si ambas validaciones son correctas
+// Guardar en la base de datos
 $sentencia = $conexion->prepare(
     'INSERT INTO productos (nombre, cantidad)
      VALUES (:nombre, :cantidad)'
@@ -62,5 +52,6 @@ $sentencia->execute([
     'cantidad' => (int) $cantidad
 ]);
 
+// Regresar al formulario
 header('Location: index.php?estado=guardado');
 exit;
