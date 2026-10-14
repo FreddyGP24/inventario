@@ -3,7 +3,7 @@
 
 function validarNombreProducto(string $nombre): bool
 {
-    //$nombre = trim($nombre);
+    $nombre = trim($nombre);
 
     return mb_strlen($nombre, 'UTF-8') >= 3
         && mb_strlen($nombre, 'UTF-8') <= 50;
