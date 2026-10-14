@@ -17,16 +17,16 @@ steps:
   - name: Descargar codigo
     uses: actions/checkout@v4
 
-    -name: Configurar PHP
+  - name: Configurar PHP
     uses: shivammathur/setup-php@v2
     with:
       php-version: '8.2'
 
 
--name: Verificar  sintaxis
-run: |
-  php -l src/validaciones.php
-  php -l test/test_validaciones.php
+  - name: Verificar  sintaxis
+    run: |
+      php -l src/validaciones.php
+      php -l test/test_validaciones.php
 
--name: Ejecutar pruebas
-run: php tests/test_validaciones.phpl
+  - name: Ejecutar pruebas
+    run: php tests/test_validaciones.php
