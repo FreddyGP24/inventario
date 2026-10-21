@@ -31,9 +31,9 @@ jobs:
 
     env:
       DB_HOST: 127.0.0.1
-      DB_NAME: inventariopruebas
-      DB_USER: usuario_pruebas
-      DB_PASSWORD: clave_pruebas
+      DB_NAME: bd_inventario_pruebas
+      DB_USER: root
+      DB_PASSWORD: root
 
     steps:
       - name: Descargar código
