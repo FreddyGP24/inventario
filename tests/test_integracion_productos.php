@@ -17,10 +17,10 @@ try {
     ]);
     $id = $conexion->lastInsertId();
     echo "Correcto: inserción realizada. ID: $id" . PHP_EOL;
-
-
+    
+    
     $consulta = $conexion->prepare(
-        'SELECT nombre, cantidad
+    'SELECT nombre, cantidad
      FROM productos
      WHERE id = :id'
     );
@@ -33,7 +33,7 @@ try {
         && $producto['nombre'] === $nombre
         && (int) $producto['cantidad'] === $cantidad
     ) {
-        echo "CORRECTO: nombre y cantidad coinciden." . PHP_EOL;
+    echo "CORRECTO: nombre y cantidad coinciden." . PHP_EOL;
     } else {
         echo "ERROR: producto no encontrado o datos diferentes."
             . PHP_EOL;

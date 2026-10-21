@@ -18,7 +18,7 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: root_pruebas
-          MYSQL_DATABASE: inventario_test
+          MYSQL_DATABASE: inventariopruebas
           MYSQL_USER: usuario_pruebas
           MYSQL_PASSWORD: clave_pruebas
         ports:
@@ -31,7 +31,7 @@ jobs:
 
     env:
       DB_HOST: 127.0.0.1
-      DB_NAME: inventario_test
+      DB_NAME: inventariopruebas
       DB_USER: usuario_pruebas
       DB_PASSWORD: clave_pruebas
 
