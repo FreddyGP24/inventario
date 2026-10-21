@@ -31,9 +31,9 @@ jobs:
 
     env:
       DB_HOST: 127.0.0.1
-      DB_NAME: bd_inventario_pruebas
-      DB_USER: root
-      DB_PASSWORD: root
+      DB_NAME: inventariopruebas
+      DB_USER: usuario_pruebas
+      DB_PASSWORD: clave_pruebas
 
     steps:
       - name: Descargar código
@@ -59,7 +59,7 @@ jobs:
           mysql --protocol=TCP \
             --host="$DB_HOST" \
             --user="$DB_USER" \
-            "$DB_NAME" < tests/estructura_pruebas.sql
+            "$DB_NAME" < test/estructura_pruebas.sql
 
       - name: Ejecutar pruebas unitarias
         run: php test/test_validaciones.php
